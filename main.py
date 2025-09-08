@@ -78,16 +78,16 @@ app = FastAPI(
 )
 
 origins = [
-    "http://localhost:3000",   # your frontend
+    "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://your-frontend-domain.com",  # production domain
+    "https://digital-eye-strain-detector.vercel.app",
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,        # or ["*"] to allow all
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],          # ["GET", "POST", ...]
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
