@@ -11,7 +11,7 @@ import logging
 import time
 from video_processor import VideoFeatureExtractor
 import tempfile
-from blink_detector import BlinkDetector
+# from blink_detector import BlinkDetector
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -185,12 +185,10 @@ async def process_video(video_file: UploadFile = File(...)):
         
         # Extract features
         extractor = VideoFeatureExtractor()
-        blink_detector = BlinkDetector()
+        # blink_detector = BlinkDetector()
         features = extractor.extract_features_from_video(temp_video_path)
         
-        blink_count, blink_rate = blink_detector.detect_blinks(temp_video_path)
-        # Convert all numpy arrays to Python lists for JSON serialization
-        # This is the crucial fix for the serialization error
+        # blink_count, blink_rate = blink_detector.detect_blinks(temp_video_path)
         features_list = [feature.tolist() for feature in features]
         
         # Clean up
@@ -198,8 +196,8 @@ async def process_video(video_file: UploadFile = File(...)):
         
         return {
             "features": features_list,
-            "blink_count": blink_count,
-            "blink_rate": blink_rate,
+            # "blink_count": blink_count,
+            # "blink_rate": blink_rate,
             "message": "Video processed successfully"
         }
         
