@@ -6,3 +6,4 @@ pydantic==2.5.0
 torchvision
 huggingface_hub
 opencv-python-headless
+python-multipart
