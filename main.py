@@ -11,6 +11,7 @@ import logging
 import time
 from video_processor import VideoFeatureExtractor
 import tempfile
+from huggingface_hub import hf_hub_download
 # from blink_detector import BlinkDetector
 
 # Configure logging
@@ -101,6 +102,10 @@ async def load_model():
     """Load the trained model during application startup"""
     global model
     try:
+        model_path = hf_hub_download(
+            repo_id="OWK50GA/digital-eye-strain-detector",
+            filename="resnet_lstm_best_with_threshold.pth"
+        )
         # Initialize model with the correct architecture
         model = EyeStrainModel(
             input_size=512, 
@@ -109,7 +114,6 @@ async def load_model():
         ).to(device)
         
         # Load model weights
-        model_path = "resnet_lstm_best_with_threshold.pth"
         checkpoint = torch.load(model_path, map_location=device)
         
         # Debug: print keys from checkpoint and model
