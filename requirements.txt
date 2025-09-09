@@ -5,3 +5,4 @@ numpy==1.26.4
 pydantic==2.5.0
 torchvision
 huggingface_hub
+opencv-python-headless
